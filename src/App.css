@@ -28,11 +28,23 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main__container {
+  background: #dfdfdf;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.video__grid {
+  position: relative;
+}
+
+.video__box {
+  border: 12px solid rgb(216, 214, 214);
+}
+
+.partner {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  z-index: 2;
 }

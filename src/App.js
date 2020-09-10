@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 
-function App() {
+import "./App.css";
+
+const App = ({ history }) => {
+  const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/${url}`);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={() => history.push(`/${Math.abs(Math.random())}`)}>
+          create room
+        </button>
+        <button onClick={() => setOpen(true)}>join room</button>
+        {open && (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Enter room id"
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            <input type="submit" />
+          </form>
+        )}
       </header>
     </div>
   );
-}
+};
 
-export default App;
+export default withRouter(App);
